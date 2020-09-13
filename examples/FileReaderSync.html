@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FileReaderSync Example</title>
+</head>
+<body>
+<h1>FileReaderSync Example</h1>
+<input type="file" name="file" accept=".txt,.md" /><br/>
+<textarea name="content" placeholder="file content" style="width:550px;height:400px;"></textarea>
+
+<script type="module">
+import FileReaderSync from '../src/FileReaderSync.js';
+let $=(selector,context)=>(context?context:document).querySelector(selector);
+
+let input=$('input[name="file"]');
+let output=$('textarea[name="content"]');
+input.onchange=(e)=>{
+  let input=e.target;
+  let file=input.files[0];
+  if(!file){
+    output.value='';
+    output.placeholder='file content';
+    return;
+  }
+  try{
+    output.value=new FileReaderSync().readAsText(file);
+  }catch(error){
+    output.value='';
+    output.placehoder=error.toString();
+  }
+};
+</script>
+</body>
+</html>

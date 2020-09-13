@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FileReaderAsync Example</title>
+</head>
+<body>
+<h1>FileReaderAsync Example</h1>
+<input type="file" name="file" accept=".txt,.md" /><br/>
+<textarea name="content" placeholder="file content" style="width:550px;height:400px;"></textarea>
+
+<script type="module">
+import FileReaderAsync from '../src/FileReaderAsync.js';
+let $=(selector,context)=>(context?context:document).querySelector(selector);
+
+let input=$('input[name="file"]');
+let output=$('textarea[name="content"]');
+input.onchange=(e)=>{
+  let input=e.target;
+  let file=input.files[0];
+  if(!file){
+    output.value='';
+    return;
+  }
+  new FileReaderAsync().readAsText(file).then((text)=>{
+    output.value=text;
+  }, (error)=>{
+    output.value='';
+    output.placehoder=error.toString();
+  });
+};
+</script>
+</body>
+</html>

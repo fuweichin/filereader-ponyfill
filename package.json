@@ -1,0 +1,26 @@
+{
+  "name": "filereader-ponyfill",
+  "version": "0.1.0",
+  "description": "ponyfill to read file async(promise style) or sync(worker style)",
+  "author": "Fuwei Chin",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel --source-maps true -d dist src"
+  },
+  "files": [
+    "README.md",
+    "src",
+    "dist"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-modules-umd": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "express": "^4.17.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
